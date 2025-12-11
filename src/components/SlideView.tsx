@@ -189,7 +189,7 @@ export const SlideView = ({ slide }: SlideViewProps) => {
           className="max-w-5xl"
         >
           {/* Title */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gold mb-4 leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gold mb-8 leading-tight">
             {slide.title}
           </h1>
 
@@ -235,7 +235,7 @@ export const SlideView = ({ slide }: SlideViewProps) => {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                  className="text-lg md:text-xl lg:text-2xl text-white flex items-start"
+                  className="text-xl md:text-2xl lg:text-3xl text-white flex items-start"
                 >
                   <span className="text-teal mr-4 text-2xl">▸</span>
                   <span className="leading-relaxed">{bullet}</span>

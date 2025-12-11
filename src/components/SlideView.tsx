@@ -180,16 +180,17 @@ export const SlideView = ({ slide }: SlideViewProps) => {
       )}
 
       {/* Foreground Content */}
-      <div className="relative z-20 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24 py-16">
+      <div className="relative z-20 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24 py-8 md:py-12 lg:py-16 overflow-hidden">
         <motion.div
           key={slide.id}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="max-w-5xl"
+          className="max-w-5xl max-h-full overflow-y-auto"
+          style={{ fontSize: 'clamp(0.875rem, 1.5vh, 1.5rem)' }}
         >
           {/* Title */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gold mb-8 leading-tight">
+          <h1 className="font-bold text-gold mb-6 md:mb-8 leading-tight" style={{ fontSize: 'clamp(1.75rem, 5vh, 4.5rem)' }}>
             {slide.title}
           </h1>
 
@@ -201,7 +202,7 @@ export const SlideView = ({ slide }: SlideViewProps) => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex items-center gap-4 mb-8"
             >
-              <span className="text-gold text-lg md:text-xl lg:text-2xl font-light">
+              <span className="text-gold font-light" style={{ fontSize: 'clamp(0.875rem, 2vh, 1.5rem)' }}>
                 Presented by:
               </span>
               <img
@@ -215,7 +216,7 @@ export const SlideView = ({ slide }: SlideViewProps) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl md:text-2xl lg:text-3xl text-teal mb-8 font-light"
+              className="text-teal mb-6 md:mb-8 font-light" style={{ fontSize: 'clamp(1rem, 2.5vh, 2rem)' }}
             >
               {slide.subtitle}
             </motion.p>
@@ -227,7 +228,7 @@ export const SlideView = ({ slide }: SlideViewProps) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="space-y-4 md:space-y-6 mb-8"
+              className="space-y-3 md:space-y-4 lg:space-y-5 mb-6 md:mb-8"
             >
               {slide.bullets.map((bullet, index) => (
                 <motion.li
@@ -235,9 +236,9 @@ export const SlideView = ({ slide }: SlideViewProps) => {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                  className="text-xl md:text-2xl lg:text-3xl text-white flex items-start"
+                  className="text-white flex items-start" style={{ fontSize: 'clamp(1rem, 2.2vh, 1.875rem)' }}
                 >
-                  <span className="text-teal mr-4 text-2xl">▸</span>
+                  <span className="text-teal mr-3 md:mr-4" style={{ fontSize: 'clamp(1.25rem, 2.5vh, 1.75rem)' }}>▸</span>
                   <span className="leading-relaxed">{bullet}</span>
                 </motion.li>
               ))}
@@ -250,9 +251,9 @@ export const SlideView = ({ slide }: SlideViewProps) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: slide.bullets ? 1.2 : 0.6 }}
-              className="mt-8 md:mt-12 p-6 md:p-8 border-l-4 border-gold bg-black/40 backdrop-blur-sm rounded-r-lg"
+              className="mt-6 md:mt-8 lg:mt-10 p-4 md:p-6 lg:p-8 border-l-4 border-gold bg-black/40 backdrop-blur-sm rounded-r-lg"
             >
-              <p className="text-lg md:text-xl lg:text-2xl text-gold font-semibold leading-relaxed italic">
+              <p className="text-gold font-semibold leading-relaxed italic" style={{ fontSize: 'clamp(0.9375rem, 2vh, 1.5rem)' }}>
                 {slide.highlight}
               </p>
             </motion.div>

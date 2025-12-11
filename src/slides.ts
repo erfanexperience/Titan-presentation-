@@ -11,14 +11,24 @@ export interface Slide {
   accentObjectSrc?: string; // small floating 3D object
 }
 
+// Base URL for assets (Vite will replace this at build time)
+const BASE_URL = '/Titan-presentation-/';
+
+// Helper to get correct asset path with base URL
+const getAssetPath = (path: string) => {
+  // Remove leading slash from path if present, then combine with base
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  return `${BASE_URL}${cleanPath}`;
+};
+
 export const slides: Slide[] = [
   {
     id: 1,
     title: "Strategic Entry into Saudi Air Defense",
     highlight: "High-level access, strategic alignment, and execution inside the Kingdom of Saudi Arabia.",
     mediaType: "video",
-    mediaSrc: "/media/cover-ksa-defense.mp4",
-    accentObjectSrc: "/media/obj-saudi-emblem.png"
+    mediaSrc: getAssetPath("/media/cover-ksa-defense.mp4"),
+    accentObjectSrc: getAssetPath("/media/obj-saudi-emblem.png")
   },
   {
     id: 2,
@@ -30,8 +40,8 @@ export const slides: Slide[] = [
     ],
     highlight: "Leidos needs more than an introduction. It needs a strategic operator inside the Kingdom.",
     mediaType: "image",
-    mediaSrc: "/media/ksa-future-city.png",
-    accentObjectSrc: "/media/obj-radar-core.png"
+    mediaSrc: getAssetPath("/media/ksa-future-city.png"),
+    accentObjectSrc: getAssetPath("/media/obj-radar-core.png")
   },
   {
     id: 3,
@@ -44,8 +54,8 @@ export const slides: Slide[] = [
       "Drive execution from first meeting to signed agreements."
     ],
     mediaType: "video",
-    mediaSrc: "/media/titan-hologram.mp4",
-    accentObjectSrc: "/media/obj-saudi-emblem.png"
+    mediaSrc: getAssetPath("/media/titan-hologram.mp4"),
+    accentObjectSrc: getAssetPath("/media/obj-saudi-emblem.png")
   },
   {
     id: 4,
@@ -57,8 +67,8 @@ export const slides: Slide[] = [
     ],
     highlight: "Separate, tailored engagements for each pillar — not generic networking.",
     mediaType: "video",
-    mediaSrc: "/media/commercial-structure.mp4",
-    accentObjectSrc: "/media/obj-roadmap-ring.png"
+    mediaSrc: getAssetPath("/media/commercial-structure.mp4"),
+    accentObjectSrc: getAssetPath("/media/obj-roadmap-ring.png")
   },
   {
     id: 5,
@@ -69,7 +79,7 @@ export const slides: Slide[] = [
       "Phase 3 – Execution & Follow-Through: Manage post-meeting momentum and communication to drive agreements."
     ],
     mediaType: "video",
-    mediaSrc: "/media/execution-roadmap.mp4"
+    mediaSrc: getAssetPath("/media/execution-roadmap.mp4")
   },
   {
     id: 6,
@@ -81,7 +91,7 @@ export const slides: Slide[] = [
     ],
     highlight: "The window to establish Leidos as a core air defense partner in KSA is open. Titan Global.sa is ready to operate on the ground immediately.",
     mediaType: "video",
-    mediaSrc: "/media/global-defense-network.mp4"
+    mediaSrc: getAssetPath("/media/global-defense-network.mp4")
   }
 ];
 

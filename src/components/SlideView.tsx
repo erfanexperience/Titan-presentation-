@@ -205,7 +205,7 @@ export const SlideView = ({ slide }: SlideViewProps) => {
                 Presented by:
               </span>
               <img
-                src="/media/logo.png"
+                src="/Titan-presentation-/media/logo.png"
                 alt="Titan Global.sa"
                 className="h-10 md:h-12 lg:h-[52px]"
               />

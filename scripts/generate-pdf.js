@@ -19,11 +19,24 @@ async function generatePDF() {
   try {
     const page = await browser.newPage();
     
-    // Set viewport to match presentation size
+    // Set viewport to match presentation size (full screen)
     await page.setViewport({
       width: 1920,
       height: 1080,
-      deviceScaleFactor: 2
+      deviceScaleFactor: 1
+    });
+    
+    // Set content to fill entire viewport
+    await page.evaluate(() => {
+      document.body.style.margin = '0';
+      document.body.style.padding = '0';
+      const root = document.getElementById('root');
+      if (root) {
+        root.style.width = '100vw';
+        root.style.height = '100vh';
+        root.style.margin = '0';
+        root.style.padding = '0';
+      }
     });
 
     // Navigate to local dev server
@@ -79,22 +92,68 @@ async function generatePDF() {
             el.style.display = 'none';
           }
         });
+        
+        // Ensure full viewport coverage
+        document.body.style.margin = '0';
+        document.body.style.padding = '0';
+        document.body.style.width = '100vw';
+        document.body.style.height = '100vh';
+        document.body.style.overflow = 'hidden';
+        
+        const root = document.getElementById('root');
+        if (root) {
+          root.style.margin = '0';
+          root.style.padding = '0';
+          root.style.width = '100vw';
+          root.style.height = '100vh';
+          root.style.overflow = 'hidden';
+        }
+        
+        // Make sure slide containers fill viewport
+        const slideContainers = document.querySelectorAll('[class*="w-full"], [class*="h-full"], [class*="h-screen"]');
+        slideContainers.forEach(container => {
+          container.style.width = '100vw';
+          container.style.height = '100vh';
+          container.style.margin = '0';
+          container.style.padding = '0';
+        });
       });
 
       await page.waitForTimeout(500);
 
-      // Capture this slide as PDF
+      // Ensure content fills the page
+      await page.evaluate(() => {
+        const root = document.getElementById('root');
+        if (root) {
+          root.style.width = '100vw';
+          root.style.height = '100vh';
+          root.style.margin = '0';
+          root.style.padding = '0';
+          root.style.overflow = 'hidden';
+        }
+        // Make sure all slide containers fill the viewport
+        const slideContainers = document.querySelectorAll('[class*="w-full"][class*="h-full"], [class*="h-screen"]');
+        slideContainers.forEach(container => {
+          container.style.width = '100vw';
+          container.style.height = '100vh';
+          container.style.margin = '0';
+          container.style.padding = '0';
+        });
+      });
+
+      // Capture this slide as PDF with exact dimensions
       const pdfBuffer = await page.pdf({
         width: '1920px',
         height: '1080px',
         printBackground: true,
-        preferCSSPageSize: false,
+        preferCSSPageSize: true,
         margin: {
           top: '0',
           right: '0',
           bottom: '0',
           left: '0'
-        }
+        },
+        scale: 1
       });
 
       pdfPages.push(pdfBuffer);
@@ -105,9 +164,19 @@ async function generatePDF() {
     const pdfDoc = await PDFDocument.create();
 
     for (const pdfBuffer of pdfPages) {
-      const [existingPdf] = await pdfDoc.embedPdf(await PDFDocument.load(pdfBuffer));
+      const loadedPdf = await PDFDocument.load(pdfBuffer);
+      const [existingPdf] = await pdfDoc.embedPdf(loadedPdf);
       const page = pdfDoc.addPage([1920, 1080]);
-      page.drawPage(existingPdf);
+      // Scale to fill entire page
+      const scaleX = 1920 / existingPdf.width;
+      const scaleY = 1080 / existingPdf.height;
+      const scale = Math.max(scaleX, scaleY);
+      page.drawPage(existingPdf, {
+        xScale: scale,
+        yScale: scale,
+        x: 0,
+        y: 0
+      });
     }
 
     // Save PDF

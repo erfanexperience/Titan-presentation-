@@ -27,8 +27,7 @@ export const slides: Slide[] = [
     title: "Strategic Entry into Saudi Air Defense",
     highlight: "High-level access, strategic alignment, and execution inside the Kingdom of Saudi Arabia.",
     mediaType: "video",
-    mediaSrc: getAssetPath("/media/cover-ksa-defense.mp4"),
-    accentObjectSrc: getAssetPath("/media/obj-saudi-emblem.png")
+    mediaSrc: getAssetPath("/media/cover-ksa-defense.mp4")
   },
   {
     id: 2,
@@ -40,8 +39,7 @@ export const slides: Slide[] = [
     ],
     highlight: "Leidos needs more than an introduction. It needs a strategic operator inside the Kingdom.",
     mediaType: "image",
-    mediaSrc: getAssetPath("/media/ksa-future-city.png"),
-    accentObjectSrc: getAssetPath("/media/obj-radar-core.png")
+    mediaSrc: getAssetPath("/media/ksa-future-city.png")
   },
   {
     id: 3,
@@ -54,8 +52,7 @@ export const slides: Slide[] = [
       "Drive execution from first meeting to signed agreements."
     ],
     mediaType: "video",
-    mediaSrc: getAssetPath("/media/titan-hologram.mp4"),
-    accentObjectSrc: getAssetPath("/media/obj-saudi-emblem.png")
+    mediaSrc: getAssetPath("/media/titan-hologram.mp4")
   },
   {
     id: 4,
@@ -67,8 +64,7 @@ export const slides: Slide[] = [
     ],
     highlight: "Separate, tailored engagements for each pillar — not generic networking.",
     mediaType: "video",
-    mediaSrc: getAssetPath("/media/commercial-structure.mp4"),
-    accentObjectSrc: getAssetPath("/media/obj-roadmap-ring.png")
+    mediaSrc: getAssetPath("/media/commercial-structure.mp4")
   },
   {
     id: 5,

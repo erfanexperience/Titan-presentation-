@@ -43,7 +43,7 @@ export const slides: Slide[] = [
   },
   {
     id: 3,
-    title: "Titan Global.sa: Strategic Operator on the Ground",
+    title: "Titan Global: Strategic Operator on the Ground",
     subtitle: "Advisor · Facilitator · Strategic Connector",
     bullets: [
       "Position Leidos as a premier partner for Kingdom-wide air defense initiatives.",
